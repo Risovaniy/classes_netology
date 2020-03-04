@@ -1,0 +1,147 @@
+class Animals:
+    def __init__(self, name, mass):
+        self.name = name
+        self.mass = mass
+        self.voice = ''
+        self.hurry = 'Голоден'
+
+    def eat(self):
+        self.hurry = "Накормлен"
+
+    def say_mass(self):
+        return self.mass
+
+    def info(self):
+        print(f'name {self.name}\n'
+              f'mass {self.mass} kg\n'
+              f'voice {self.voice}\n'
+              f'hurry {self.hurry}\n')
+
+
+class Goats(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Ме-ме'
+        self.milk = "Не доили"
+
+    def milking(self):
+        self.milk = "Доили"
+
+
+class Cows(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Му-му'
+        self.milk = "Не доили"
+
+    def milking(self):
+        self.milk = "Доили"
+
+
+class Sheeps(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Бе-е-е'
+        self.cut = "Не стригли"
+
+    def cuting(self):
+        self.cut = "Подстрижен"
+
+
+class Chickens(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Ко-ко-ко'
+        self.have_eggs = "Яйца не собрали"
+
+    def collect_eggs(self):
+        self.have_eggs = "Яйца собраны"
+
+
+class Ducks(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Кря-кря'
+        self.have_eggs = "Яйца не собрали"
+
+    def collect_eggs(self):
+        self.have_eggs = "Яйца собраны"
+
+
+class Geese(Animals):
+    def __init__(self, name, mass):
+        super().__init__(name, mass)
+        self.voice = 'Га-га-га'
+        self.have_eggs = "Яйца не собрали"
+
+    def collect_eggs(self):
+        self.have_eggs = "Яйца собраны"
+
+
+def total_mass(animals):
+    total_mass = 0
+    for animal in animals:
+        mass = Animals.say_mass(animal)
+        total_mass += mass
+    return total_mass
+
+
+def max_mass(animals):
+    max_mass = 0
+    name_heavy_ani = ''
+    for animal in animals:
+        mass = Animals.say_mass(animal)
+        if max_mass < mass:
+            max_mass = mass
+            name_heavy_ani = animal.name
+    return name_heavy_ani
+
+
+all_animals = [goat_roga, goat_kopita, duck_krakva, сhicken_kukareku, сhicken_ko_ko, sheep_barashek,
+               sheep_kudraviy, cow_manka, goose_seriy, goose_beliy]
+
+
+goose_seriy = Geese('Серый', 6)
+goose_beliy = Geese('Белый', 7)
+Geese.eat(goose_seriy)
+Geese.eat(goose_beliy)
+Geese.collect_eggs(goose_seriy)
+Geese.collect_eggs(goose_beliy)
+
+
+cow_manka = Cows('Манька', 550)
+Cows.eat(cow_manka)
+Cows.milking(cow_manka)
+
+
+sheep_barashek = Sheeps('Барашек', 43)
+sheep_kudraviy = Sheeps('Кудрявый', 45)
+Sheeps.eat(sheep_barashek)
+Sheeps.eat(sheep_kudraviy)
+Sheeps.cuting(sheep_barashek)
+Sheeps.cuting(sheep_kudraviy)
+
+
+сhicken_ko_ko = Chickens('Ко-ко', 1)
+сhicken_kukareku = Chickens('Кукареку', 2)
+Chickens.eat(сhicken_ko_ko)
+Chickens.eat(сhicken_kukareku)
+Chickens.collect_eggs(сhicken_ko_ko)
+Chickens.collect_eggs(сhicken_kukareku)
+
+
+duck_krakva = Ducks('Кряква', 4)
+Ducks.eat(duck_krakva)
+Ducks.collect_eggs(duck_krakva)
+
+
+goat_roga = Goats('Рога', 50)
+goat_kopita = Goats('Копыта', 55)
+Goats.eat(goat_roga)
+Goats.eat(goat_kopita)
+Goats.milking(goat_roga)
+Goats.milking(goat_kopita)
+
+
+print(f'Общая масса животных {total_mass(all_animals)} кг')
+print(f'Имя самого тяжелого животного {max_mass(all_animals)}')
